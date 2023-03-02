@@ -1067,7 +1067,7 @@ public static class ToLuaMenu
     [MenuItem("Lua/Build Lua files to Resources (PC)", false, 53)]
     public static void BuildLuaToResources()
     {
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
         Debug.Log("Building luac5.3 bytecode for all platform");
 #else
         Debug.Log("Building Luajit bytecode for " + LuaConst.osDir);
@@ -1085,7 +1085,7 @@ public static class ToLuaMenu
         
         Directory.Delete(tempDir, true);                
         AssetDatabase.Refresh();
-#if !LUAC_5_3
+#if !LUAC_5_3 && !LUAC_5_4
         Debug.Log("Building Luajit bytecode for " + LuaConst.osDir + " over");
 #else
         Debug.Log("Building Luac5.3 bytecode for " + LuaConst.osDir + " over");
@@ -1095,7 +1095,7 @@ public static class ToLuaMenu
     [MenuItem("Lua/Build Lua files to Persistent (PC)", false, 54)]
     public static void BuildLuaToPersistent()
     {
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
         Debug.Log("Building luac5.3 bytecode for all platform");
 #else
         Debug.Log("Building Luajit bytecode for " + LuaConst.osDir);
@@ -1124,7 +1124,7 @@ public static class ToLuaMenu
 
         Directory.Delete(tempDir, true);
         AssetDatabase.Refresh();
-#if !LUAC_5_3
+#if !LUAC_5_3 && !LUAC_5_4
         Debug.Log("Building Luajit bytecode for " + LuaConst.osDir + " over");
 #else
         Debug.Log("Building Luac5.3 bytecode for " + LuaConst.osDir + " over");
@@ -1135,7 +1135,7 @@ public static class ToLuaMenu
     //直接将lua字符串打包，不导出成bytecode
     public static void BuildNotJitBundles()
     {
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
         Debug.Log("Building luac5.3 bundle for all platform");
 #else
         Debug.Log("Building Luajit bundle for " + LuaConst.osDir);
@@ -1185,7 +1185,7 @@ public static class ToLuaMenu
         Directory.Delete(Application.streamingAssetsPath + "/Lua/", true);
 #endif
         AssetDatabase.Refresh();
-#if !LUAC_5_3
+#if !LUAC_5_3 && !LUAC_5_4
         Debug.Log("Building Luajit bundle for " + LuaConst.osDir + " over");
 #else
         Debug.Log("Building Luac5.3 bundle for " + LuaConst.osDir + " over");
@@ -1197,7 +1197,7 @@ public static class ToLuaMenu
     // 使用lua5.3就是编译成lua5.3的兼容32/64位tolua运行环境的一份bytecode
     public static void BuildLuaBundles()
     {
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
         Debug.Log("Building luac5.3 bytecode bundle for all platform");
 #else
         Debug.Log("Building Luajit bytecode bundle for " + LuaConst.osDir);
@@ -1250,7 +1250,7 @@ public static class ToLuaMenu
         Directory.Delete(tempDir, true);
 #endif
         AssetDatabase.Refresh();
-#if !LUAC_5_3
+#if !LUAC_5_3 && !LUAC_5_4
         Debug.Log("Building Luajit bytecode bundle for " + LuaConst.osDir + " over");
 #else
         Debug.Log("Building Luac5.3 bytecode bundle for " + LuaConst.osDir + " over");
@@ -1541,7 +1541,7 @@ public static class ToLuaMenu
         libRoot = libRoot.Substring(0, libRoot.LastIndexOf('/'));
         isWin = Application.platform == RuntimePlatform.WindowsEditor;
 
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
         exeRoot = "Luac53";
         luaexe = isWin ? "luac.exe" : "./luac";
         args = " -o " + outFile + " " + srcFile;

@@ -64,7 +64,7 @@ public class LuaClient : MonoBehaviour
         luaState.AddPreLoadLib("lpeg", new LuaCSFunction(LuaDLL.luaopen_lpeg));
         luaState.AddPreLoadLib("cjson", new LuaCSFunction(LuaDLL.luaopen_cjson));
         luaState.AddPreLoadLib("cjson.safe", new LuaCSFunction(LuaDLL.luaopen_cjson_safe));
-#if (UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX) && !LUAC_5_3
+#if (UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX) && !LUAC_5_3 && !LUAC_5_4
         luaState.AddPreLoadLib("bit", new LuaCSFunction(LuaDLL.luaopen_bit));
 #endif
 

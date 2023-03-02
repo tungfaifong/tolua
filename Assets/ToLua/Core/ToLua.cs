@@ -124,7 +124,7 @@ namespace LuaInterface
         static void AddLuaLoader(IntPtr L)
         {
             LuaDLL.lua_getglobal(L, "package");
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
             LuaDLL.lua_getfield(L, -1, "searchers");
 #else
             LuaDLL.lua_getfield(L, -1, "loaders");

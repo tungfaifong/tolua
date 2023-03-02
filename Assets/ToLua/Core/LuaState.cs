@@ -105,7 +105,7 @@ namespace LuaInterface
             float time = Time.realtimeSinceStartup;
             int version = LuaDLL.luaL_getversion();
             Debugger.Log("lua version:{0}", version);
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
             if (version != 503)
             {
                 int major = version / 100;

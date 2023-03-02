@@ -33,7 +33,7 @@ namespace LuaInterface
             return LuaDLL.lua_type(L, pos) == LuaTypes.LUA_TNUMBER;
         }
 
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
 		public bool CheckInteger(IntPtr L, int pos)
         {
 			return LuaDLL.lua_isinteger(L, pos) != 0;	
@@ -52,7 +52,7 @@ namespace LuaInterface
 
         public bool CheckLong(IntPtr L, int pos)
         {
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
             return LuaDLL.lua_isinteger(L, pos) != 0;
 #else
             LuaTypes luaType = LuaDLL.lua_type(L, pos);
@@ -90,7 +90,7 @@ namespace LuaInterface
             return luaType == LuaTypes.LUA_TNUMBER || luaType == LuaTypes.LUA_TNIL;
         }
 
-#if LUAC_5_3       
+#if LUAC_5_3 || LUAC_5_4       
         //需要优化,合并为1个call		
         public bool CheckNullInteger(IntPtr L, int pos)
         {
@@ -112,7 +112,7 @@ namespace LuaInterface
 
         public bool CheckNullLong(IntPtr L, int pos)
         {
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
 			//需要优化,合并为1个call		
 			return LuaDLL.lua_isinteger(L, pos) != 0 || LuaDLL.lua_type(L, pos) == LuaTypes.LUA_TNIL;
 #else

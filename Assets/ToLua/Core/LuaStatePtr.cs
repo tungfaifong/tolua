@@ -10,7 +10,7 @@ namespace LuaInterface
     public class LuaStatePtr
     {
         public IntPtr L;
-#if !LUAC_5_3 && UNITY_ANDROID
+#if !LUAC_5_3 && !LUAC_5_4 && UNITY_ANDROID
         string jit = @"            
         function Euler(x, y, z)
             x = x * 0.0087266462599716
@@ -84,7 +84,7 @@ namespace LuaInterface
 
         public void LuaOpenJit()
         {
-#if UNITY_ANDROID && !LUAC_5_3
+#if UNITY_ANDROID && !LUAC_5_3 && !LUAC_5_4
             //某些机型如三星arm64在jit on模式下会崩溃，临时关闭这里
             if (IntPtr.Size == 8)
             {                
@@ -165,7 +165,7 @@ namespace LuaInterface
             return LuaDLL.lua_isnumber(L, idx) != 0;
         }
 
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
         public bool LuaIsInteger(int idx)
         {
             return LuaDLL.lua_isinteger(L, idx) != 0;
@@ -352,7 +352,7 @@ namespace LuaInterface
             return LuaDLL.lua_getmetatable(L, idx);
         }
 
-#if !LUAC_5_3
+#if !LUAC_5_3 && !LUAC_5_4
         public void LuaGetEnv(int idx)
         {
             LuaDLL.lua_getfenv(L, idx);
@@ -384,7 +384,7 @@ namespace LuaInterface
             LuaDLL.lua_setmetatable(L, objIndex);
         }
 
-#if !LUAC_5_3
+#if !LUAC_5_3 && !LUAC_5_4
         public void LuaSetEnv(int idx)
         {
             LuaDLL.lua_setfenv(L, idx);
@@ -401,7 +401,7 @@ namespace LuaInterface
             return LuaDLL.lua_pcall(L, nArgs, nResults, errfunc);
         }
 
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
 		public void LuaCallK(int nArgs, int nResults, IntPtr ctx, LuaKFunction k)
 		{
 			LuaDLL.lua_callk(L, nArgs, nResults, ctx, k);
@@ -420,7 +420,7 @@ namespace LuaInterface
 
 		public int LuaResumeThread(IntPtr thread, int narg)
         {
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
             return LuaDLL.lua_resume(thread, L, narg);
 #else
             return LuaDLL.lua_resume(thread, narg);
@@ -511,7 +511,7 @@ namespace LuaInterface
 
 		public void LuaRawGlobal(string name)
         {
-#if LUAC_5_3
+#if LUAC_5_3 || LUAC_5_4
             LuaDLL.lua_pushglobaltable(L);
             int top = LuaDLL.lua_gettop(L);
             LuaDLL.lua_pushstring(L, name);
