@@ -159,6 +159,8 @@ public static class ToLuaExport
         "Texture.imageContentsHash",
         "QualitySettings.streamingMipmapsMaxLevelReduction",
         "QualitySettings.streamingMipmapsRenderersPerFrame",		
+        "ParticleSystem.SetParticles",
+        "ParticleSystem.GetParticles",
         //NGUI
         "UIInput.ProcessEvent",
         "UIWidget.showHandlesWithMoveTool",
