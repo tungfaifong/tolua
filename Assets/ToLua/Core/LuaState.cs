@@ -106,11 +106,11 @@ namespace LuaInterface
             int version = LuaDLL.luaL_getversion();
             Debugger.Log("lua version:{0}", version);
 #if LUAC_5_3 || LUAC_5_4
-            if (version != 503)
+            if (version != 503 && version != 504)
             {
                 int major = version / 100;
                 int minor = version - major * 100;
-                throw new LuaException(string.Format("lua version mismatch need lua5.3, get lua{0}.{1}", major, minor));
+                throw new LuaException(string.Format("lua version mismatch need lua5.3 or lua5.4, get lua{0}.{1}", major, minor));
             }       
 #else
             if (version != 501)
